@@ -3,7 +3,7 @@ CREATE TABLE "pokemon" (
   "national_id" integer NOT NULL,
   "species_name" varchar(255) NOT NULL,
   "classification" varchar(255) NOT NULL,
-  "gender_ratio" smallint NOT NULL,
+  "gender_ratio" float NOT NULL,
   "evolution_chain_id" integer NOT NULL,
   "relation_group_id" integer,
   "generation_introduced" smallint NOT NULL,
@@ -41,9 +41,9 @@ CREATE TABLE "pokemon_form_game" (
   "base_experience" integer NOT NULL,
   "hp" smallint NOT NULL,
   "attack" smallint NOT NULL,
-  "defence" smallint NOT NULL,
+  "defense" smallint NOT NULL,
   "special_attack" smallint NOT NULL,
-  "special_defence" smallint NOT NULL,
+  "special_defense" smallint NOT NULL,
   "speed" smallint NOT NULL
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE "version_group" (
 CREATE TABLE "type" (
   "type_id" smallint PRIMARY KEY,
   "type_name" varchar(50) NOT NULL,
-  "type_identifiers" varchar(50) NOT NULL,
+  "type_identifier" varchar(50) NOT NULL,
   "generation_introduced" smallint NOT NULL
 );
 
@@ -164,6 +164,7 @@ CREATE TABLE "encounter_method" (
 CREATE TABLE "encounter" (
   "encounter_id" integer PRIMARY KEY,
   "pokemon_id" integer NOT NULL,
+  "form_id" integer NOT NULL,
   "game_id" integer NOT NULL,
   "location_area_id" integer NOT NULL,
   "encounter_method_id" integer NOT NULL,
@@ -184,7 +185,7 @@ CREATE TABLE "encounter_condition" (
 
 CREATE TABLE "pokedex_entries" (
   "pokemon_id" integer NOT NULL,
-  "form_id" integer NOT NULL,
+  "form_id" integer,
   "game_id" integer NOT NULL,
   "pokedex_number" smallint NOT NULL,
   "entry_text" text NOT NULL
@@ -250,6 +251,8 @@ ALTER TABLE "location" ADD FOREIGN KEY ("region_id") REFERENCES "region" ("regio
 ALTER TABLE "location_area" ADD FOREIGN KEY ("location_id") REFERENCES "location" ("location_id");
 
 ALTER TABLE "encounter" ADD FOREIGN KEY ("pokemon_id") REFERENCES "pokemon" ("pokemon_id");
+
+ALTER TABLE "encounter" ADD FOREIGN KEY ("form_id") REFERENCES "pokemon_form" ("form_id");
 
 ALTER TABLE "encounter" ADD FOREIGN KEY ("game_id") REFERENCES "game" ("game_id");
 

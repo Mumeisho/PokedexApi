@@ -10,6 +10,7 @@
 - `classification` (e.g., "Mouse Pokemon", "Flame Pokemon")
 - `gender_ratio` (Float - 0.0 = all male, 1.0 = all female, -1 = genderless)
 - `evolution_chain_id` (Foreign Key → evolution_chains)
+- `relation_group_id`(Foreign Key → relation_groups, nullable)
 - `generation_introduced` (Integer - 1-9)
 - `is_legendary` (Boolean)
 - `is_mythical` (Boolean)
@@ -53,12 +54,6 @@
 - `special_attack` (Integer)
 - `special_defense` (Integer)
 - `speed` (Integer)
-- `ev_hp` (Integer)
-- `ev_attack` (Integer)
-- `ev_defense` (Integer)
-- `ev_special_attack` (Integer)
-- `ev_special_defense` (Integer)
-- `ev_speed` (Integer)
 
 ## Pokemon Form Game Types
 

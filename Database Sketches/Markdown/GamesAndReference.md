@@ -10,7 +10,7 @@
 - `generation` (Integer - 1-9)
 - `version_group_id` (Foreign Key → version_groups)
 - `release_date` (Date)
-- `platform` (e.g., "Game Boy", "Nintendo Switch")
+- `platform` (Foreign Key → platforms)
 - `is_main_series` (Boolean)
 
 ## Version Groups
@@ -30,7 +30,6 @@
 - `type_name` (e.g., "Fire", "Water", "Electric")
 - `type_identifier` (e.g., "fire", "water", "electric")
 - `generation_introduced` (Integer)
-- `damage_class` (Enum: "physical", "special", "status" - for moves)
 
 ## Type Effectiveness
 
@@ -77,34 +76,19 @@
 - `egg_group_name` (e.g., "Monster", "Water 1", "Fairy")
 - `egg_group_identifier` (e.g., "monster", "water1", "fairy")
 
-## Natures
+## Platforms
 
-### **Stat-modifying natures**
+### **Nintendo Hardware List**
 
-- `nature_id` (Primary Key)
-- `nature_name` (e.g., "Hardy", "Adamant", "Modest")
-- `nature_identifier` (e.g., "hardy", "adamant", "modest")
-- `increased_stat` (Enum: "attack", "defense", "special_attack", "special_defense", "speed", null)
-- `decreased_stat` (Enum: "attack", "defense", "special_attack", "special_defense", "speed", null)
-- `hates_flavor` (String - for Poffin/Pokeblock mechanics)
-- `likes_flavor` (String)
+- `platform_id` (Primary Key)
+- `platform_name`(e.g., "Nintendo Switch", "Nintendo WiiU")
+- `platform_identifier`(e.g., "nintendo-switch", "nintendo-wii-u)
 
-## Items
+## Relations
 
-### **All items in the games**
+### **Pokemon relation Groups**
 
-- `item_id` (Primary Key)
-- `item_name` (e.g., "Potion", "Ultra Ball", "Leftovers")
-- `item_identifier` (e.g., "potion", "ultra-ball", "leftovers")
-- `category_id` (Foreign Key → item_categories)
-- `cost` (Integer - buy price, null if can't buy)
-- `fling_power` (Integer - for Fling move)
-- `generation_introduced` (Integer)
-
-## Item Categories
-
-### **Item classification**
-
-- `item_category_id` (Primary Key)
-- `category_name` (e.g., "Medicine", "Pokeballs", "Battle Items")
-- `category_identifier` (e.g., "medicine", "pokeballs", "battle-items")
+- `relation_group_id` (Primary Key)
+- `relation_name` (e.g. "Firefly Duo", "Sea Guardians")
+- `relation_identifier`(e.g. "firefly_duo", "sea_guardians")
+- `relation_description` (Description of this group's relation to eachother. Not evolution related)

@@ -46,10 +46,21 @@
 - `version_group_id` (Foreign Key → version_groups)
 - `location_area_id` (Foreign Key → location_areas)
 - `encounter_method_id` (Foreign Key → encounter_methods)
-- `min_level` (Integer)
-- `max_level` (Integer)
 - `chance` (Integer - encounter rate percentage)
-- `condition_values` (JSON - special conditions like time of day, weather)
+- `encounter_conditions_id` (unique)
+
+## Encounter Condition Values
+
+### **Spesific conditions to encounter a pokemon**
+
+- `encounter_condition_value_id`(Primary Key)
+- `value_name`(e.g. "Night", "Day", "Raining")
+- `value_identifier` (e.g. "night". "day". "raining")
+
+## Encounter Conditions
+
+- `encounter_conditions_id` (Foreign Key → encounter -> encounter_conditions_id)
+- `encounter_condition_value_id` (Foreign Key → encounter_condition_value)
 
 ## Pokedex Entries
 
@@ -85,36 +96,3 @@
 ### **Evolution family groupings**
 
 - `evolution_chain_id` (Primary Key)
-- `baby_trigger_item_id` (Foreign Key → items, nullable)
-
-## Evolution Conditions
-
-### **How Pokemon evolve**
-
-- `evolution_id` (Primary Key)
-- `evolved_pokemon_id` (Foreign Key → pokemon)
-- `evolution_trigger_id` (Foreign Key → evolution_triggers)
-- `trigger_item_id` (Foreign Key → items, nullable)
-- `minimum_level` (Integer, nullable)
-- `gender_id` (Integer, nullable - 1=female, 2=male)
-- `location_id` (Foreign Key → locations, nullable)
-- `held_item_id` (Foreign Key → items, nullable)
-- `time_of_day` (Enum: "day", "night", nullable)
-- `known_move_id` (Foreign Key → moves, nullable)
-- `known_move_type_id` (Foreign Key → types, nullable)
-- `minimum_happiness` (Integer, nullable)
-- `minimum_beauty` (Integer, nullable)
-- `minimum_affection` (Integer, nullable)
-- `relative_physical_stats` (Integer, nullable - for Hitmon evolutions)
-- `party_pokemon_id` (Foreign Key → pokemon, nullable)
-- `trade_pokemon_id` (Foreign Key → pokemon, nullable)
-- `needs_overworld_rain` (Boolean)
-- `turn_upside_down` (Boolean - for Inkay)
-
-## Evolution Triggers
-
-### **Types of evolution triggers**
-
-- `evolution_trigger_id` (Primary Key)
-- `trigger_name` (e.g., "Level up", "Trade", "Use item")
-- `trigger_identifier` (e.g., "level-up", "trade", "use-item")

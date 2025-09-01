@@ -169,7 +169,7 @@ CREATE TABLE "encounter" (
   "location_area_id" integer NOT NULL,
   "encounter_method_id" integer NOT NULL,
   "chance" smallint NOT NULL,
-  "encounter_conditions_id" integer
+  "encounter_conditions_id" integer NOT NULL
 );
 
 CREATE TABLE "encounter_condition_value" (
@@ -260,7 +260,7 @@ ALTER TABLE "encounter" ADD FOREIGN KEY ("location_area_id") REFERENCES "locatio
 
 ALTER TABLE "encounter" ADD FOREIGN KEY ("encounter_method_id") REFERENCES "encounter_method" ("encounter_method_id");
 
-ALTER TABLE "encounter" ADD FOREIGN KEY ("encounter_conditions_id") REFERENCES "encounter_condition" ("encounter_conditions_id");
+ALTER TABLE "encounter_condition" ADD FOREIGN KEY ("encounter_conditions_id") REFERENCES "encounter" ("encounter_conditions_id");
 
 ALTER TABLE "encounter_condition" ADD FOREIGN KEY ("encounter_condition_value_id") REFERENCES "encounter_condition_value" ("encounter_condition_value_id");
 

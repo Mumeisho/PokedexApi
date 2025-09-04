@@ -39,12 +39,12 @@ CREATE TABLE "pokemon_form_game" (
   "height" float NOT NULL,
   "weight" float NOT NULL,
   "base_experience" integer NOT NULL,
-  "hp" smallint NOT NULL,
-  "attack" smallint NOT NULL,
-  "defense" smallint NOT NULL,
-  "special_attack" smallint NOT NULL,
-  "special_defense" smallint NOT NULL,
-  "speed" smallint NOT NULL
+  "hp" smallint,
+  "attack" smallint,
+  "defense" smallint,
+  "special_attack" smallint,
+  "special_defense" smallint,
+  "speed" smallint
 );
 
 CREATE TABLE "pokemon_form_type" (
